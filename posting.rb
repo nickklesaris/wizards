@@ -5,12 +5,4 @@ class Posting
     @url = url
     @description = desc
   end
-
-  def linked_title
-    "<a href=" + self.url + ">#{self.title}</a>"
-  end
-
-  def foobar
-    "foobar"
-  end
 end

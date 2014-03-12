@@ -1,7 +1,6 @@
 require 'sinatra'
 require 'csv'
 require_relative 'posting'
-require 'pry'
 
 get '/' do
   erb :index
@@ -24,9 +23,15 @@ post '/articles' do
 end
 
 get '/archive' do
-  @postings = []
+  @archive = []
   CSV.foreach('postings.csv', headers: true ) do |csv|
-    @postings << Posting.new(csv["title"], csv["url"], csv["description"])
+    @archive << Posting.new(csv["title"], csv["url"], csv["description"])
   end
-erb :archive
+  erb :archive
+end
+
+get '/article/:url' do
+  @url = params[:url]
+
+  erb :articles
 end

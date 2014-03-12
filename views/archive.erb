@@ -5,16 +5,12 @@
   </head>
 
   <body>
-    <h1>Previously submitted Articles</h1>
+    <h1>Submitted Articles</h1>
     <ul>
-      <% @display_array.each do |articles| %>
-      <%  articles.each |key,value| %>
-         <li><%= key + value %></li>
-      <%end%>
-
-      <% @postings.each do |posting| %>
-        <%= posting.linked_title %>
-        <%= posting.foobar %>
+      <% @archive.each do |articles| %>
+      <li>Description: <%= articles.title%> </li>
+      <li>Url: <a href='/article/' target ="_blank"><%= articles.url%></a> </li>
+      <li>Description: <%= articles.description%> </li>
       <%end%>
     </ul>
 

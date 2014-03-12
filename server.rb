@@ -8,24 +8,25 @@ get '/' do
 end
 
 post '/articles' do
-#read the input from the form the user filled out
-#wizard_input = [{:title => 'title', :url => 'url_addr', :desc => 'description'}]
-# Open archive file and append input from form
-#  wizards = []
-  @full_article = Posting.new(params["title"],params["url"],params["desc"])
 
+  @posting = Posting.new(params["title"],params["url"],params["desc"])
 
-#  wizards << article_hash
-
-#  binding.pry
-  CSV.open("postings.csv", 'a') do |file|
-    #binding.pry
-    file << [@full_article.title, @full_article.url, @full_article.description]
+  if !FileTest.exists?("postings.csv")
+    CSV.open("postings.csv", 'w+') do |file|
+      file << ["title", "url", "description"]
+    end
   end
 
-   redirect '/'
+  CSV.open("postings.csv", 'a') do |file|
+    file << [@posting.title, @posting.url, @posting.description]
+  end
+  redirect '/'
 end
 
 get '/archive' do
-  erb :archive
+  @postings = []
+  CSV.foreach('postings.csv', headers: true ) do |csv|
+    @postings << Posting.new(csv["title"], csv["url"], csv["description"])
+  end
+erb :archive
 end

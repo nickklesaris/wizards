@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Article Archives</title>
+  </head>
+
+  <body>
+    <h1>Previously submitted Articles</h1>
+    <ul>
+      <% @display_array.each do |articles| %>
+      <%  articles.each |key,value| %>
+         <li><%= key + value %></li>
+      <%end%>
+
+      <% @postings.each do |posting| %>
+        <%= posting.linked_title %>
+        <%= posting.foobar %>
+      <%end%>
+    </ul>
+
+  </body>
+</html>

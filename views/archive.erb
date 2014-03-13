@@ -9,7 +9,7 @@
     <ul>
       <% @archive.each do |articles| %>
       <li>Description: <%= articles.title%> </li>
-      <li>Url: <a href='/article/' target ="_blank"><%= articles.url%></a> </li>
+      <li>Url: <a href= '<%=articles.url%>' target ="_blank"><%= articles.url%></a> </li>
       <li>Description: <%= articles.description%> </li>
       <%end%>
     </ul>

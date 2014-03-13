@@ -28,10 +28,5 @@ get '/archive' do
     @archive << Posting.new(csv["title"], csv["url"], csv["description"])
   end
   erb :archive
-end
 
-get '/article/:url' do
-  @url = params[:url]
-
-  erb :articles
 end
